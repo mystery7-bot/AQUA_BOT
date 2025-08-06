@@ -1,0 +1,55 @@
+# 🧠 AquaBot – Water Safety Assistant Prototype
+
+import random
+
+# Function to check water safety based on description
+def water_safety_check(description):
+    desc = description.lower()
+    if "muddy" in desc or "brown" in desc or "smell" in desc:
+        return "🚫 The water seems unsafe. Please filter and boil it before drinking."
+    elif "clear" in desc or "transparent" in desc:
+        return "✅ The water looks clean. Still, it's better to filter or boil it to be sure."
+    else:
+        return "⚠ I can't determine the safety from that description. Please consult a health worker."
+
+# Function to return a random sanitation tip
+def get_sanitation_tip():
+    tips = [
+        "🧼 Always wash your hands with soap after using the toilet.",
+        "💧 Store water in clean, covered containers.",
+        "🚱 Don’t drink water that looks muddy or smells bad.",
+        "🔄 Change stored water every 24 hours to avoid contamination.",
+        "👶 Teach children to wash hands before eating and after toilet use."
+    ]
+    return random.choice(tips)
+
+# Main chatbot loop
+def aquabot():
+    print("🤖 Welcome to AquaBot – Your Water Safety and Sanitation Assistant!")
+    print("Type 'exit' to quit.\n")
+    
+    while True:
+        print("\nWhat would you like to do?")
+        print("1️⃣ Check water safety")
+        print("2️⃣ Get a sanitation tip")
+        user_choice = input("Enter 1 or 2: ")
+
+        if user_choice == '1':
+            description = input("\nDescribe the water (e.g., 'muddy', 'clear', 'smells bad'): ")
+            if description.lower() == 'exit':
+                break
+            print("\n" + water_safety_check(description))
+
+        elif user_choice == '2':
+            print("\n💡 Sanitation Tip:")
+            print(get_sanitation_tip())
+
+        elif user_choice.lower() == 'exit':
+            break
+        else:
+            print("❌ Invalid input. Please type 1 or 2.")
+
+    print("\n👋 Thank you for using AquaBot. Stay safe and hydrated!")
+
+# Run the chatbot
+aquabot()
